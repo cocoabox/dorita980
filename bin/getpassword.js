@@ -7,12 +7,13 @@ const tls = require('tls');
 const discovery = require('../lib/discovery');
 
 if (!process.argv[2]) {
-  console.log('Usage: npm run getpassword <robot_ip_address> [firmware version]');
+  console.log('Usage: npm run getpassword <robot_ip_address> [firmware version] [local_ip_address]');
   process.exit();
 }
 
 const host = process.argv[2];
 const fversion = process.argv[3];
+const localAddress= process.argv[4];
 
 var requestOptions = {
   'method': 'POST',
@@ -28,6 +29,10 @@ var requestOptions = {
     'Host': host
   }
 };
+
+if (localAddress) {
+  requestOptions.localAddress = localAddress; 
+}
 
 function checkV1 (rid) {
   if (rid === 120) {

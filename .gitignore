@@ -40,3 +40,5 @@ devtest.js
 
 .DS_Store
 
+# vim
+*.un~
